@@ -56,7 +56,7 @@ You can explore and interact with it here using simple user role permissions (us
  ```text
    http://localhost:8080/messages.html
    ```
-To see the pool of all the messages and their status, you could run the following GET endpoint (either on postman ro webrowser) with admin role permisssions (username:adminsc, password:adminpass):
+To see the pool of all the messages and their status, you could run the following GET endpoint (either on postman or web-browser) with admin role permisssions (username:adminsc, password:adminpass):
  ```text
    http://localhost:8080/messages/all
    ```
