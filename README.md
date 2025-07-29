@@ -41,3 +41,13 @@ This project implements a microservice-based SMS messaging platform in Java usin
    http://localhost:8080/q/health
    http://localhost:8080/q/metrics
    ```
+
+## API Documentation
+
+You can explore and test the available API endpoints via the built-in Swagger UI:
+   ```text
+   http://localhost:8080/q/swagger-ui
+   ```
+<img width="930" height="777" alt="image" src="https://github.com/user-attachments/assets/e8a8d22e-4f26-4c4b-83a9-bd11132a7171" />
+
+
