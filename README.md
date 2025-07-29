@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project implements a microservice-based SMS messaging platform in Java using Quarkus. It demonstrates core backend engineering principles including RESTful API design, asynchronous communication, and message-driven architecture. The system consists of loosely coupled services that interact through RabbitMQ to handle SMS delivery requests. It includes synchronous request validation, reliable message queuing, simulated processing with randomized delivery outcomes, and a callback mechanism to notify the original service of the result. The design highlights proficiency in Java microservices, message broker integration, and robust error handling practices.
+This project implements a microservice-based SMS messaging platform in Java using Quarkus. It demonstrates core backend engineering principles including RESTful API design, asynchronous communication, and message-driven architecture. The system consists of loosely coupled services that interact through RabbitMQ to handle SMS delivery requests. It includes synchronous request validation, reliable message queuing, simulated processing, and a callback mechanism to notify the original service of the result. 
 
 ## Installation Instructions
 
@@ -79,7 +79,7 @@ The system consists of two microservices built with Quarkus:
 - Stores delivery results in the database
 - Sends a callback to the SMS Service upon completion
 
-### 🔁 Message Flow
+### Message Flow
 1. SMS Service receives and validates input
 2. Sends it to RabbitMQ
 3. Processor handles delivery and posts the result back
