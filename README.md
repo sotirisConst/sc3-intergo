@@ -39,4 +39,5 @@ This project implements a microservice-based SMS messaging platform in Java usin
    Open your browser and visit:
    ```text
    http://localhost:8080/q/health
+   http://localhost:8080/q/metrics
    ```
