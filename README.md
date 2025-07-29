@@ -50,7 +50,7 @@ You can explore and test the available API endpoints via the built-in Swagger UI
    ```
 <img width="930" height="777" alt="image" src="https://github.com/user-attachments/assets/e8a8d22e-4f26-4c4b-83a9-bd11132a7171" />
 
-## Testing adn Experimenting
+## Testing and Experimenting
 For demonstration purposes, a simple web interface has been created to showcase the functionality of the system and expose some of its APIs.
 You can explore and interact with it here using simple user role permissions (username:bob, password:bob):
  ```text
@@ -61,5 +61,29 @@ To see the pool of all the messages and their status, you could run the followin
    http://localhost:8080/messages/all
    ```
 <img width="919" height="937" alt="image" src="https://github.com/user-attachments/assets/5ca7cf82-cabb-4ac2-bed1-ad0bc0d82132" />
+
+## Setup & Architecture
+
+The system consists of two microservices built with Quarkus:
+
+### SMS Service (`rabbitmq-producer`)
+- Exposes REST endpoints to send and list messages
+- Validates input synchronously
+- Sends accepted messages to RabbitMQ (`message-requests`)
+- Streams real-time updates to the frontend via SSE
+- Handles internal callbacks for delivery results
+
+### Processor Service (`rabbitmq-processor`)
+- Listens to RabbitMQ for incoming messages
+- Simulates SMS delivery (random success/failure)
+- Stores delivery results in the database
+- Sends a callback to the SMS Service upon completion
+
+### 🔁 Message Flow
+1. SMS Service receives and validates input
+2. Sends it to RabbitMQ
+3. Processor handles delivery and posts the result back
+4. SMS Service updates the client in real-time
+
 
 
