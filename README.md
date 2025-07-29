@@ -50,4 +50,16 @@ You can explore and test the available API endpoints via the built-in Swagger UI
    ```
 <img width="930" height="777" alt="image" src="https://github.com/user-attachments/assets/e8a8d22e-4f26-4c4b-83a9-bd11132a7171" />
 
+## Testing adn Experimenting
+For demonstration purposes, a simple web interface has been created to showcase the functionality of the system and expose some of its APIs.
+You can explore and interact with it here using simple user role permissions (username:bob, password:bob):
+ ```text
+   http://localhost:8080/messages.html
+   ```
+To see the pool of all the messages and their status, you could run the following GET endpoint (either on postman ro webrowser) with admin role permisssions (username:adminsc, password:adminpass):
+ ```text
+   http://localhost:8080/messages/all
+   ```
+<img width="919" height="937" alt="image" src="https://github.com/user-attachments/assets/5ca7cf82-cabb-4ac2-bed1-ad0bc0d82132" />
+
 
