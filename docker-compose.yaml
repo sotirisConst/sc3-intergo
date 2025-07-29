@@ -1,0 +1,62 @@
+version: '2'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: my-postgres
+    environment:
+      POSTGRES_USER: quarkus
+      POSTGRES_PASSWORD: quarkus
+      POSTGRES_DB: messages
+    ports:
+      - "5432:5432"
+    networks:
+      - rabbitmq-quickstart-network
+
+  rabbit:
+    image: rabbitmq:3.12-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - rabbitmq-quickstart-network
+
+  producer:
+    image: sc3-intergo/rabbitmq-producer:1.0-${QUARKUS_MODE:-jvm}
+    build:
+      context: rabbitmq-producer
+      dockerfile: src/main/docker/Dockerfile.${QUARKUS_MODE:-jvm}
+    environment:
+      RABBITMQ_HOST: rabbit
+      RABBITMQ_PORT: 5672
+      QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://postgres:5432/messages
+      QUARKUS_DATASOURCE_USERNAME: quarkus
+      QUARKUS_DATASOURCE_PASSWORD: quarkus
+    ports:
+      - "8080:8080"
+    networks:
+      - rabbitmq-quickstart-network
+    depends_on:
+      - rabbit
+      - postgres
+
+  processor:
+    image: sc3-intergo/rabbitmq-processor:1.0-${QUARKUS_MODE:-jvm}
+    build:
+      context: rabbitmq-processor
+      dockerfile: src/main/docker/Dockerfile.${QUARKUS_MODE:-jvm}
+    environment:
+      RABBITMQ_HOST: rabbit
+      RABBITMQ_PORT: 5672
+      QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://postgres:5432/messages
+      QUARKUS_DATASOURCE_USERNAME: quarkus
+      QUARKUS_DATASOURCE_PASSWORD: quarkus
+    networks:
+      - rabbitmq-quickstart-network
+    depends_on:
+      - rabbit
+      - postgres
+
+networks:
+  rabbitmq-quickstart-network:
+    name: rabbitmq-quickstart
