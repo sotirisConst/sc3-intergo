@@ -6,22 +6,37 @@ This project implements a microservice-based SMS messaging platform in Java usin
 
 ## Installation Instructions
 
-1. Clone the project
-   
-2. Navigate to the project root directory:
+1. **Clone the project**
+   ```bash
+   gh repo clone sotirisConst/sc3-intergo
+   ```
 
-cd /sc3-intergo/
+2. **Navigate to the project root directory**
+   ```bash
+   cd sc3-intergo/
+   ```
 
-3.Build both services using Maven:
-mvn clean package -f rabbitmq-producer
-mvn clean package -f rabbitmq-processor
+3. **Build both services using Maven**
+   ```bash
+   mvn clean package -f rabbitmq-producer
+   mvn clean package -f rabbitmq-processor
+   ```
 
-4. Start the system using Docker Compose:
+4. **Start the system using Docker Compose**
 
-If you're using Docker Compose v1:
-docker-compose up --build
-Or for Docker Compose v2+:
-docker compose up --build
+   For Docker Compose v1:
+   ```bash
+   docker-compose up --build
+   ```
 
-5.Verify the services are running:
-Open your browser and visit: http://localhost:8080/q/health
+   Or for Docker Compose v2+:
+   ```bash
+   docker compose up --build
+   ```
+
+5. **Verify the services are running**
+
+   Open your browser and visit:
+   ```text
+   http://localhost:8080/q/health
+   ```
